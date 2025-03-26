@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="static/css/style.css" />
+    <title>MOS3C</title>
+  </head>
+  <body>
+    <main>
+      <div class="overlay"></div>
+      <div class="container">
+        <nav>
+          <a href="/"style="color: inherit; text-decoration: none;">
+            <div class="logo">MO<span>S3C</span></div>
+          </a>
+          <div class="nav-links">
+            <a href="{% url 'index' %}" class="active">HOME</a>
+            <a href="{% url 'upload' %}">UPLOAD</a>
+            <a href="#">ABOUT</a>
+            <a href="#">BLOG</a>
+          </div>
+        </nav>
+        <div class="hero">
+          <h3>
+            Who talks most? <br />
+            Find out now.
+          </h3>
+          <p>
+            A sleek little tool to dig into your WhatsApp group chats—upload a
+            file, get the stats, and see who’s keeping the convo alive, all in a
+            snap. Designed for curious souls, it uncovers every chatterbox and
+            quiet star with effortless charm, turning your message history into
+            a playful peek at your crew’s dynamic, delivered lightning-fast.
+          </p>
+          <div class="btn">
+            <button>GET STARTED</button>
+            <button>EXPLORE MORE</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="upper">
+      <div class="container">
+        <div class="content">
+          <a href="/"style="color: inherit; text-decoration: none;"></a>
+            <div class="logo">MO<span>S3C</span></div>
+          </a>
+          <p>
+            A sleek tool to dive into your WhatsApp chats—upload a file, get
+            quick stats, and see who’s the group’s spark, all in a flash.
+          </p>
+        </div>
+        <div class="links">
+          <div>
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="#">Go Pro</a></li>
+              <li><a href="#">Explore Designs</a></li>
+              <li><a href="#">Creative Design</a></li>
+              <li><a href="#">Playoffs</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Innovate</h4>
+            <ul>
+              <li><a href="#">Tags</a></li>
+              <li><a href="#">API</a></li>
+              <li><a href="#">Places</a></li>
+              <li><a href="#">Creative Markets</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>About</h4>
+            <ul>
+              <li><a href="#">Community</a></li>
+              <li><a href="#">Designers</a></li>
+              <li><a href="#">Supports</a></li>
+              <li><a href="#">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <div class="copy">
+          <p>All Rights Reserved</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

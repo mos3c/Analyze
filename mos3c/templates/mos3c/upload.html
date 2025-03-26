@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>MOS3C | UPLOAD</title>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <nav>
+                <div class="logo">MO<span>S3C</span></div>
+                <div class="nav-links">
+                    <a href="{% url 'index' %}">HOME</a> 
+                    <a href="{% url 'upload' %}" class="active">UPLOAD</a>
+                    <a href="#">ABOUT</a>
+                    <a href="#">BLOG</a>
+                </div>
+            </nav>
+
+            <div class="upload">
+                <h3>Upload your attachments</h3>
+                <p>Drag and drop your files here</p>
+                <!-- Display error messages from the view -->
+                {% if error %}
+                <div class="error" style="color: red; margin-bottom: 20px;">
+                    {{ error }}
+                </div>
+                {% else %}
+                <div class="error"></div>
+                {% endif %}
+
+                <!-- Form for Django file upload -->
+                <form method="post" enctype="multipart/form-data" id="uploadForm">
+                    {% csrf_token %}
+                    <!-- Drop zone -->
+                    <div class="upload-box" id="uploadBox">
+                        <div class="icon">
+                            <span class="material-symbols-outlined upload-icon" id="uploadIcon">
+                                upload
+                            </span>
+                        </div>
+                        <!-- Preview file -->
+                        <div class="preview" id="preview">
+                            <span class="material-symbols-outlined upload-icon hidden" id="uploadedIcon">
+                                docs
+                            </span>
+                            <div class="filename" id="fileName"></div>
+                        </div>
+                        <!--  -->
+                        <p>.txt only</p>
+                        <p>You can also upload file by</p>
+                        <!-- Click Upload -->
+                        <label>clicking here
+                            <input type="file" id="fileInput" name="chat_file" accept="text/plain" class="hidden" />
+                        </label>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="btns">
+                        <button type="button" id="cancelBtn">Cancel</button>
+                        <button type="submit" id="uploadBtn">Upload File</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <div class="upper">
+        <div class="container">
+            <div class="content">
+                <div class="logo">MO<span>S3C</span></div>
+                <p>
+                    A sleek tool to dive into your WhatsApp chats—upload a file, get
+                    quick stats, and see who’s the group’s spark, all in a flash.
+                </p>
+            </div>
+            <div class="links">
+                <div>
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="#">Go Pro</a></li>
+                        <li><a href="#">Explore Designs</a></li>
+                        <li><a href="#">Creative Design</a></li>
+                        <li><a href="#">Playoffs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Innovate</h4>
+                    <ul>
+                        <li><a href="#">Tags</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Places</a></li>
+                        <li><a href="#">Creative Markets</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Designers</a></li>
+                        <li><a href="#">Supports</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="copy">
+                <p>All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/index.js' %}"></script>
+</body>
+</html>

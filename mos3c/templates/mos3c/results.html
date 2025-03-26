@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:700,600|Open+Sans:400,600" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'css/results.css' %}" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        <h1 class="title">Results</h1>
+        <h2 class="subtitle">{{ chat_name }}</h2>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="icon-container blue">
+                    <i class="fas fa-message"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">{{ stats.total_messages }}</div>
+                    <div class="stat-label">Total Message</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon-container purple">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">{{ stats.users_messages }}</div>
+                    <div class="stat-label">Users Messages</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon-container green">
+                    <i class="fas fa-calendar"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">{{ stats.avg_messages_per_day }}</div>
+                    <div class="stat-label">Avg mess per Day</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                            <div class="subtext">Search</div>
+                        </th>
+                        <th>
+                            Number of Messages
+                            <div class="subtext">most</div>
+                        </th>
+                        <th>
+                            Avg Number of messages
+                        </th>
+                        <th>
+                            Most Used Word
+                            <div class="subtext">Search</div>
+                        </th>
+                        <th>
+                            Avg Number of words
+                            <div class="subtext">Per day</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for participant in participants %}
+                    <tr>
+                        <td>{{ participant.name }}</td>
+                        <td><div class="value-box">{{ participant.message_count }}</div></td>
+                        <td><div class="value-box">{{ participant.avg_messages_per_day }}</div></td>
+                        <td>{{ participant.most_used_word }}</td>
+                        <td><div class="value-box">{{ participant.avg_words_per_day }}</div></td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">No participants found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <a href="{% url 'index' %}" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Back to home
+        </a>
+    </main>
+    <footer>
+        <div class="container">
+          <div class="copy">
+            <p>All Rights Reserved</p>
+          </div>
+        </div>
+      </footer>
+</body>
+</html>

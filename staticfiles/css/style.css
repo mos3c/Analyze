@@ -1,0 +1,258 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jersey+25&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --font-one: "Inter", sans-serif;
+  --font-two: "Jersey 25", sans-serif;
+  --font-three: "Roboto", sans-serif;
+  --bg-color: #131313;
+  --text-color: #ffffff;
+  --secondary-color: #3cde1f;
+  --btn-color: #135602;
+  --nav-bg-color: rgba(255, 255, 255, 0.23);
+  --footer-color: #d9d9d9;
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+  position: relative;
+  width: 100%;
+  height: 982px;
+  background-image: url("/static/images/hero-bg.jpg");
+  
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 60px 0;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: rgba(0, 0, 0, 1);
+  z-index: -1;
+}
+
+/* Navigation */
+main nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color);
+  height: 81px;
+  background: var(--nav-bg-color);
+  border-radius: 96px;
+  padding: 0 60px;
+  font-size: 22px;
+  font-weight: 800;
+  backdrop-filter: blur(10px); /* Add blur effect */
+}
+
+.logo {
+  font-family: var(--font-one);
+  font-size: 22px;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.logo span {
+  color: var(--secondary-color);
+}
+
+.nav-links {
+  display: flex;
+  gap: 60px;
+  font-family: var(--font-two);
+}
+
+.nav-links a {
+  font-weight: 300;
+  color: #f0eaea;
+  /* color: var(--text-color); */
+  transition: all 0.5s ease-in-out;
+}
+
+.nav-links a:first-child,
+.nav-links a:hover {
+  color: var(--secondary-color);
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 732px;
+  margin: 15rem 0;
+  color: var(--text-color);
+  font-family: var(--font-one);
+  font-style: italic;
+}
+
+.hero h3 {
+  font-weight: 800;
+  font-size: 59px;
+  line-height: 100%;
+}
+
+.hero p {
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: flex;
+  gap: 5rem;
+}
+
+.btn button {
+  font-family: var(--font-two);
+  width: 186px;
+  height: 56px;
+  background: var(--btn-color);
+  color: var(--text-color);
+  font-size: 22px;
+  border-radius: 34px;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+.btn button:active {
+  transform: scale(0.9);
+}
+
+/* Footer Section */
+.upper {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.upper .container {
+  display: flex;
+  justify-content: space-between;
+  padding: 4rem 0;
+}
+
+.upper .content {
+  width: 440px;
+}
+
+.upper .content p {
+  font-family: var(--font-one);
+  font-size: 22px;
+  line-height: 150%;
+  margin-top: 20px;
+}
+
+.upper .links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 70px;
+}
+
+.upper .links h4 {
+  font-family: var(--font-one);
+  font-size: 22px;
+}
+
+.upper .links ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.upper .links a {
+  font-family: var(--font-three);
+  color: var(--text-color);
+  font-size: 17px;
+}
+
+footer {
+  background: var(--footer-color);
+  padding: 1rem;
+  font-family: var(--font-one);
+  font-style: italic;
+  font-weight: 600;
+  color: #000;
+}
+
+/* Responsive Design */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  main nav {
+    height: auto;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+
+  .hero {
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+    margin: 10rem auto;
+  }
+
+  .hero h3 {
+    font-size: 42px;
+  }
+
+  .btn {
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  .upper .container {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  footer {
+    padding-left: 3rem;
+  }
+}
+
+/* Mobile*/
+@media (max-width: 768px) {
+  main {
+    height: 800px;
+    padding: 30px 0;
+  }
+
+  .upper .container {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+}
