@@ -1,22 +1,28 @@
 {
   "builds": [
     {
-      "src": "mos3c/wsgi.py",
-      "use": "@vercel/python"
+      "src": "build_files.sh",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "staticfiles"
+      }
     },
     {
-      "src": "staticfiles/**",
-      "use": "@vercel/static"
+      "src": "mos3c/wsgi.py",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/static/(.*)",
-      "dest": "/static/$1"
+      "dest": "/staticfiles/$1"
     },
     {
       "src": "/(.*)",
       "dest": "mos3c/wsgi.py"
     }
-  ]
+  ],
+  "env": {
+    "DJANGO_DEBUG": "True"
+  }
 }
