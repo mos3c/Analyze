@@ -66,6 +66,14 @@ def upload(request):
         total_messages = 0
         first_date = None
         last_date = None
+        chat_name = None  # To store the chat name
+
+        # Updated regex to match various timestamp formats
+        # Captures: date (e.g., 02/25/2023 or 25/02/2023), time (e.g., 11:18), optional AM/PM, name, message
+        message_pattern = re.compile(r'(\d{1,2}/\d{1,2}/\d{2,4}),\s*(\d{1,2}:\d{2})\s*(AM|PM)?\s*-\s*(.*?):\s*(.*)')
+        # Patterns to find the chat name in system messages
+        chat_name_pattern_created = re.compile(r'created group "(.*?)"')
+        chat_name_pattern_subject = re.compile(r'changed the subject to "(.*?)"')
 
         # Read the file with encoding fallback
         try:
@@ -92,21 +100,27 @@ def upload(request):
             })
 
         logger.debug(f"Total lines in file: {len(lines)}")
-        logger.debug("First 10 lines of the file (for debugging):")
+        logger.debug("First 10 lines of the file (for chat name extraction):")
         for i, line in enumerate(lines[:10], 1):
             logger.debug(f"Line {i}: {line.strip()}")
 
-        # Set chat name from file name
-        file_name_without_ext = os.path.splitext(uploaded_file.name)[0]
-        if "with " in file_name_without_ext:
-            chat_name = file_name_without_ext.split("with ", 1)[1]
-        else:
-            chat_name = file_name_without_ext
-        logger.debug(f"Chat name set from file name: {chat_name}")
+        # Look for the chat name in the first few lines
+        for line in lines[:20]:
+            match_created = chat_name_pattern_created.search(line)
+            if match_created:
+                chat_name = match_created.group(1)
+                logger.debug(f"Chat name found via 'created group': {chat_name}")
+                break
 
-        # Updated regex to match various timestamp formats
-        # Captures: date (e.g., 02/25/2023 or 25/02/2023), time (e.g., 11:18), optional AM/PM, name, message
-        message_pattern = re.compile(r'(\d{1,2}/\d{1,2}/\d{2,4}),\s*(\d{1,2}:\d{2})\s*(AM|PM)?\s*-\s*(.*?):\s*(.*)')
+            match_subject = chat_name_pattern_subject.search(line)
+            if match_subject:
+                chat_name = match_subject.group(1)
+                logger.debug(f"Chat name found via 'changed the subject to': {chat_name}")
+                break
+
+        if not chat_name:
+            chat_name = os.path.splitext(uploaded_file.name)[0]
+            logger.debug(f"Chat name not found in file; using file name as fallback: {chat_name}")
 
         # Process the lines, handling multi-line messages and skipping system messages
         current_message = []
