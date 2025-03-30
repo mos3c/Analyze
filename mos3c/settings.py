@@ -26,7 +26,13 @@ SECRET_KEY = 'django-insecure-!-u%wqh_jfmty7wi$6#wzrt5w0z+9lxrbp#w*w&^h3rt(m5d=$
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
+# ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'localhost', 
+    '127.0.0.1', 
+    '.onrender.com',
+    'analyze-iwah.onrender.com'  # Add your specific Render domain
+]
 # ALLOWED_HOSTS = ['*']
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
@@ -132,3 +138,12 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 # Add this to help with static file serving
 WHITENOISE_USE_FINDERS = True
+
+# For better security in production
+if not DEBUG:
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    SECURE_HSTS_SECONDS = 31536000  # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
